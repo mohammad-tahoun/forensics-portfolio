@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohamed Tahoun | Digital Forensics & Incident Response Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #090d16;
+      --bg-card: #111827;
+      --bg-card-hover: #162033;
+      --border-color: #1f2937;
+      --accent: #00e5ff;
+      --accent-glow: rgba(0, 229, 255, 0.15);
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --badge-bg: rgba(0, 229, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(0, 229, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header / Hero Section */
+    header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--badge-bg);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Section Title */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 48px 0 28px;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: "//";
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 24px;
+      padding-bottom: 72px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: var(--bg-card-hover);
+      border-color: rgba(0, 229, 255, 0.45);
+      box-shadow: 0 12px 30px -10px var(--accent-glow);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .case-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      background: var(--badge-bg);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .category-tag {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tech-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #d1d5db;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      padding: 3px 9px;
+      border-radius: 5px;
+    }
+
+    .card-footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-view {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: gap 0.2s ease;
+    }
+
+    .btn-view:hover {
+      gap: 10px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 28px 0;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.85rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        DFIR & SOC ANALYST PORTFOLIO
+      </div>
+      <h1>Mohamed <span>Tahoun</span></h1>
+      <p class="subtitle">
+        Cybersecurity Student — Faculty of Artificial Intelligence, Egyptian Russian University (ERU).
+        Showcasing hands-on Digital Forensics investigations, artifact extraction tools, and incident response case
+        studies.
+      </p>
+      <div class="header-actions">
+        <a href="https://github.com/mohamedtahoun1" target="_blank" class="btn-outline">
+          GitHub Profile (@mohamedtahoun1)
+        </a>
+      </div>
+    </header>
+
+    <!-- Projects Section -->
+    <div class="section-header">
+      <h2 class="section-title">Forensic Case Studies & Tools</h2>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- ================= PROJECT 1 CARD ================= -->
+      <article class="card">
+        <div>
+          <div class="card-top">
+            <span class="case-id">CASE #001</span>
+            <span class="category-tag">Disk & Email Forensics</span>
+          </div>
+          <h2>Disk Forensics Investigation: M57.Biz Data Exfiltration Case</h2>
+          <p>
+            End-to-end forensic investigation of Jean's disk image (m57-jean) uncovering unauthorized spreadsheet
+            exfiltration via a targeted spear-phishing email and AIM chat artifacts.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-badge">mmls / fsstat / fls</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="Disk_Forensics_Investigation_M57.Biz_Data_Exfiltration_Case/index.html" class="btn-view">
+            Inspect Case & Report &rarr;
+          </a>
+        </div>
+      </article>
+
+      <!-- ================= PROJECT 2 CARD (TEMPLATE) ================= -->
+      <article class="card">
+        <div>
+          <div class="card-top">
+            <span class="case-id">CASE #002</span>
+            <span class="category-tag">Memory / Network Forensics</span>
+          </div>
+          <h2>Upcoming Investigation</h2>
+          <p>
+            Duplicate this card block whenever you add a new project folder, update the folder link below, and list the
+            forensic artifacts extracted.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-badge">Volatility</span>
+            <span class="tech-badge">Wireshark</span>
+            <span class="tech-badge">Timeline Analysis</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="project-2/index.html" class="btn-view">
+            Inspect Case & Report &rarr;
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      Digital Forensics Portfolio &bull; Mohamed Alaa Tahoun &bull; Built for Academic & Technical Review
+    </div>
+  </footer>
+
+</body>
+
+</html>

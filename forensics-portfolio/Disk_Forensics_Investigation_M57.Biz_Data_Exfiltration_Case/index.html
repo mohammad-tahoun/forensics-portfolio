@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case #001: M57.Biz Data Exfiltration | Mohamed Tahoun</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #090d16;
+      --bg-card: #111827;
+      --border-color: #1f2937;
+      --accent: #00e5ff;
+      --badge-bg: rgba(0, 229, 255, 0.08);
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      padding-bottom: 64px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Nav */
+    nav {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 40px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Case Header */
+    .case-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: var(--badge-bg);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .lead {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+    }
+
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 44px;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #090d16;
+      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    /* Cards & Sections */
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .step-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .step-item h3 {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .step-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    ul.findings {
+      list-style: none;
+    }
+
+    ul.findings li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    ul.findings li:last-child {
+      border-bottom: none;
+    }
+
+    ul.findings strong {
+      color: var(--text-primary);
+    }
+
+    /* Embedded PDF Viewer */
+    .pdf-container {
+      width: 100%;
+      height: 750px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 16px;
+      background: #1f2937;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <nav>
+      <a href="../index.html" class="back-link">&larr; Back to All Forensic Cases</a>
+    </nav>
+
+    <span class="case-badge">CASE #001 &bull; DISK & EMAIL FORENSICS</span>
+    <h1>Disk Forensics Investigation: M57.Biz Data Exfiltration Case</h1>
+    <p class="lead">
+      A complete dead-box digital forensic examination of the <code>m57-jean</code> disk image to investigate
+      unauthorized disclosure of confidential company salary spreadsheets.
+    </p>
+
+    <div class="action-bar">
+      <a href="pro.pdf" download="M57-Biz-Forensic-Report-Mohamed-Tahoun.pdf" class="btn-primary">
+        Download Full Forensic Report (PDF)
+      </a>
+    </div>
+
+    <!-- Investigation Methodology -->
+    <div class="section-card">
+      <h2>// 01. Forensic Methodology & Artifact Extraction</h2>
+      <div class="grid-2">
+        <div class="step-item">
+          <h3>01. Partition & Volume Analysis</h3>
+          <p>Used <code>mmls</code> to inspect the partition table layout, locate unallocated spaces, and identify the
+            primary NTFS data partition offset.</p>
+        </div>
+        <div class="step-item">
+          <h3>02. File System Inspection</h3>
+          <p>Executed <code>fsstat</code> to extract NTFS metadata, cluster size, MFT structure, and volume serial
+            details.</p>
+        </div>
+        <div class="step-item">
+          <h3>03. Directory & File Listing</h3>
+          <p>Utilized <code>fls</code> and metadata timeline analysis to trace user files, recent documents, and Outlook
+            PST archives.</p>
+        </div>
+        <div class="step-item">
+          <h3>04. Email & Chat Forensics</h3>
+          <p>Extracted Outlook emails using <code>readpst</code> and correlated timestamps with AIM chat logs to
+            establish intent and exfiltration method.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Findings -->
+    <div class="section-card">
+      <h2>// 02. Executive Summary of Findings</h2>
+      <ul class="findings">
+        <li><strong>Attack Vector:</strong> Employee Jean received a targeted spear-phishing email impersonating the CEO
+          requesting urgent employee compensation data.</li>
+        <li><strong>Exfiltrated Artifact:</strong> The confidential spreadsheet file (<code>m57biz.xls</code>) was
+          located and verified within the user's local directory and Outlook sent items.</li>
+        <li><strong>Corroborating Evidence:</strong> AIM instant messaging logs confirmed timeline correlation between
+          receiving the deceptive request and transmitting the attachment externally.</li>
+      </ul>
+    </div>
+
+    <!-- Embedded Full PDF Report -->
+    <div class="section-card">
+      <h2>// 03. Full Investigation Report & Evidence Screenshots</h2>
+      <p style="color: var(--text-secondary); font-size: 0.92rem;">
+        View the complete documented investigation including terminal outputs, hex/metadata proofs, and chain of custody
+        below:
+      </p>
+      <div class="pdf-container">
+        <iframe src="pro.pdf" width="100%" height="100%" style="border: none;"></iframe>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
